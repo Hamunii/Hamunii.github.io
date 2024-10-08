@@ -30,8 +30,8 @@ const projects = (await getCollection('projects'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hello, I'm Hamunii"
-					tagline="I am a Developer from Finland."
+					title="Hello, I'm Hamunii (aka Suni)"
+					tagline="I am a Developer from Finland. About me:"
 					align="start"
 				>
 					<div class="roles">
@@ -73,24 +73,24 @@ const projects = (await getCollection('projects'))
 
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Mentions</h3>
+					<h3>Technologies</h3>
 					<p>
-						I have been fortunate enough to receive praise for my work in several publications. Take
-						a look below to learn more.
+						These are the technologies I know really well.<br/>
+						I also know a lot more other stuff.
 					</p>
 				</header>
-
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
-				</div>
+					<div class="gallery">
+						<Grid variant="small">
+							{
+								['C#', '.NET', 'Linux'].map((brand) => (
+									<li class="mention-card">
+										<p>{brand}</p>
+									</li>
+								))
+							}
+						</Grid>
+					</div>
+				</header>
 			</section>
 		</main>
 
