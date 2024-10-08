@@ -1,0 +1,36 @@
+---
+title: AutoHookGenPatcher
+publishDate: 2024-03-06 00:00:00
+img: /assets/stock-1.jpg
+img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
+description: |
+  An improved version of a tool called HookGenPatcher, which makes modding Unity Mono games more convenient.
+tags:
+  - Modding
+  - .NET
+  - BepInEx
+  - MonoMod
+---
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+
+## What is It?
+
+[AutoHookGenPatcher](https://github.com/Hamunii/BepInEx.MonoMod.AutoHookGenPatcher) is a tool that automatically generates helper hook
+assemblies using [MonoMod](https://github.com/MonoMod/MonoMod).RuntimeDetour.HookGen to make hooking methods in C# convenient.
+
+It's a fork of [HookGenPatcher](https://github.com/harbingerofme/Bepinex.Monomod.HookGenPatcher), with the biggest difference being this:
+
+“*Instead of only having a fixed list of files to generate MMHOOK files for, AutoHookGenPatcher will get the MMHOOK file references from installed plugins, and generates those MMHOOK files if possible.*”
+
+It also has caching optimizations to prevent this from feature causing performance issues, which is arguably the most complicated part of the software. 
+
+## Usage in Modding
+
+The [Content Warning modding community](https://thunderstore.io/c/content-warning/) is fairly new and so it only uses this tool for generating hook helper files.
+As of writing this post, the tool has just over **600K** downloads.
+
+<CallToAction href="https://github.com/Hamunii/BepInEx.MonoMod.AutoHookGenPatcher">
+  More about the tool on GitHub
+  <Icon icon="arrow-right" size="1.2em" />
+</CallToAction>
