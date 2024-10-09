@@ -31,7 +31,7 @@ const projects = (await getCollection('projects'))
 			<header class="hero">
 				<Hero
 					title="Hi, I'm Samuel Suni (aka Hamunii)"
-					tagline="I am a Developer from Finland. About me:"
+					tagline="I am a Developer from Finland."
 					align="start"
 				>
 					<div class="roles">
@@ -93,6 +93,18 @@ const projects = (await getCollection('projects'))
 					</div>
 				</header>
 			</section>
+
+			<section class="section">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>More About Me</h3>
+					<p>If you're interested :3</p>
+					<CallToAction href="/about/">
+						About
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
+				</header>
+			</section>
+
 		</main>
 
 		<ContactCTA />
