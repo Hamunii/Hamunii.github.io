@@ -36,8 +36,8 @@ const { variant } = Astro.props;
 		}
 
 		.grid.offset {
-			--row-offset: 7.5rem;
-			padding-bottom: var(--row-offset);
+			--row-offset: -7.5rem;
+			padding-top: calc(0rem - var(--row-offset));
 		}
 
 		/* Shift first item in each row vertically to create staggered effect. */
