@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
+import Grid from '../components/Grid.astro';
 ---
 
 <BaseLayout title="About | Suni" description="About Suni Lorem Ipsum">
@@ -10,7 +11,7 @@ import Hero from '../components/Hero.astro';
 		<main class="wrapper about">
 			<Hero
 				title="About"
-				tagline="Here's a bit more about me :3"
+				tagline="Thanks for checking this out! Here's some stuff about me :3"
 			>
 				<img
 					width="1553"
@@ -24,36 +25,66 @@ import Hero from '../components/Hero.astro';
 				<h2 class="section-title">Background</h2>
 				<div class="content">
 					<p>
-						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy.
-						Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
-						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
-						pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
+						I'm a Finnish person living in Finland who does programming.
+						And about programming, I'm pretty much entirely self-taught since there weren't really
+						any opportunities to study anything computer science related, until University.
 					</p>
+					<br/>
 					<p>
-						Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis
-						natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl
-						condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel
-						quam elementum pulvinar etiam non.
+						I have always been fascinated by making computers do things before I even knew what
+						programming was, and I've kept learning about programming ever since hearing about it.
+						And I love programming because there's always something new to learn.
+						In my free time I often like to learn about new technologies and concepts on YouTube
+						so I learn a bit about everything.
 					</p>
+					<br/>
 					<p>
-						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
-						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
-						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
-						pretium fusce.
+						I also do a lot of programming as a hobby. Most of it is related to modding games like
+						Lethal Company. And thanks to that I've gotten very familiar with C#, .NET and reading
+						other people's code. And I do read a lot of code written by other people, so by this
+						point I'm pretty good at quickly getting an idea of what some code is supposed to do.
+					</p>
+					<br/>
+					<p>
+						Thanks to my experience in modding, I've got to work with other developers on open source
+						projects and learn what people in the modding communities know. I've learned a lot about
+						best practices and how to properly do things, like properly structuing and cofiguring a
+						C# project and using GitHub Actions for automating my mod uploads to services like
+						Thunderstore for distributing my mods.
+					</p>
+					<br/>
+					<p>
+						I've also learned about making websites because of needing a better place for a wiki
+						than GitHub's own wiki features, which has its issues.
+						And so I have experience with <a href="https://starlight.astro.build/">Astro Starlight</a>
+						for documentation sites. And for this site, I used <a href="https://astro.build/">Astro</a>
+						too as it seems nice.
 					</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">Education</h2>
 				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
+					<p>Completed secondary school, currently in university.</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">Skills</h2>
-				<div class="content">
-					<p>officia unde omnis</p>
-				</div>
+				<Grid variant="small">
+					{
+						["C#", "F#", "CIL", ".NET", "C", "Python",
+						"JavaScript", "TypeScript", "HTML", "CSS",
+						"Linux", "Windows",
+						"Git",
+						"Googling", "Reading Docs", "Learning"].map((tech) =>
+						(
+							<li class="mention-card-small">
+								<p>{tech}</p>
+							</li>
+						))
+
+					}
+				</Grid>
 			</section>
 		</main>
 
@@ -115,6 +146,29 @@ import Hero from '../components/Hero.astro';
 		section {
 			display: contents;
 			font-size: var(--text-lg);
+		}
+	}
+
+	/* ====================================================== */
+
+	.mention-card-small {
+		display: flex;
+		height: 7rem;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		color: var(--gray-300);
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+		flex-basis: 10rem !important;
+	}
+
+	@media (min-width: 50em) {
+		.mention-card-small {
+			border-radius: 1.5rem;
+			height: 7rem;
 		}
 	}
 </style>
