@@ -35,27 +35,39 @@ import Grid from '../components/Grid.astro';
 						programming was, and I've kept learning about programming ever since hearing about it.
 						And I love programming because there's always something new to learn.
 						In my free time I often like to learn about new technologies and concepts on YouTube
-						so I learn a bit about everything.
+						so I'm more aware of what's out there.
 					</p>
-					<br/>
+				</div>
+				<h2 class="section-title">Programming</h2>
+				<div class="content">
 					<p>
-						I also do a lot of programming as a hobby. Most of it is related to modding games like
-						Lethal Company. And thanks to that I've gotten very familiar with C#, .NET and reading
+						I do a lot of programming as a hobby, and most of it is related to modding games like
+						Lethal Company. And as a result I've gotten very familiar with C# and .NET, including reading
 						other people's code. And I do read a lot of code written by other people, so by this
-						point I'm pretty good at quickly getting an idea of what some code is supposed to do.
+						point I'm pretty good at it.
 					</p>
 					<br/>
 					<p>
-						Thanks to my experience in modding, I've got to work with other developers on open source
-						projects and learn what people in the modding communities know. I've learned a lot about
-						best practices and how to properly do things, like properly structuing and cofiguring a
-						C# project and using GitHub Actions for automating my mod uploads to services like
-						Thunderstore for distributing my mods.
+						As a result of modding and reverse engineering, I've started reading the source code of
+						the tools I'm relying on the most to gain a much deeper understanding of everything, rather
+						than just learning how the APIs work. Sometimes I do it because I want to know why something
+						is like it is, or maybe the information might be potentially useful later, or I'm just curious.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Collaboration</h2>
+				<div class="content">
+					<p>
+						During my modding "journey", I've got to work with other developers on open source
+						projects. I've learned a lot about best practices and how to properly do things,
+						like properly structuring and configuring a C# project and using GitHub Actions for
+						automating my mod uploads to services like Thunderstore for distributing my mods.
 					</p>
 					<br/>
 					<p>
-						I've also learned about making websites because of needing a better place for a wiki
-						than GitHub's own wiki features, which has its issues.
+						I've also learned about making websites due to a need for a better place for a modding API's docs
+						than GitHub's own wiki, which has its issues.
 						And so I have experience with <a href="https://starlight.astro.build/">Astro Starlight</a>
 						for documentation sites. And for this site, I used <a href="https://astro.build/">Astro</a>
 						too as it seems nice.
@@ -65,24 +77,62 @@ import Grid from '../components/Grid.astro';
 			<section>
 				<h2 class="section-title">Education</h2>
 				<div class="content">
-					<p>Completed secondary school, currently in university.</p>
+					<p>I've completed secondary school, currently in university.</p>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Skills</h2>
+				<h2 class="section-title" id="languages">Languages</h2>
 				<Grid variant="small">
 					{
-						["C#", "F#", "CIL", ".NET", "C", "Python",
-						"JavaScript", "TypeScript", "HTML", "CSS",
-						"Linux", "Windows",
-						"Git",
-						"Googling", "Reading Docs", "Learning"].map((tech) =>
+						["C#", ".NET", "CIL"].map((tech) =>
+						(
+							<li class="mention-card-small accent-contrast">
+								<p>{tech}</p>
+							</li>
+						))
+					}
+					{
+						["F#", "C", "Python",
+						"JavaScript", "TypeScript", "HTML", "CSS",].map((tech) =>
 						(
 							<li class="mention-card-small">
 								<p>{tech}</p>
 							</li>
 						))
-
+					}
+				</Grid>
+			</section>
+			<section>
+				<h2 class="section-title" id="tools">Tools</h2>
+				<Grid variant="small">
+					{
+						["Linux", "VSCode"].map((tech) =>
+						(
+							<li class="mention-card-small accent-contrast">
+								<p>{tech}</p>
+							</li>
+						))
+					}
+					{
+						["Windows", "Git", "Unity", "Godot", "Neovim"].map((tech) =>
+						(
+							<li class="mention-card-small">
+								<p>{tech}</p>
+							</li>
+						))
+					}
+				</Grid>
+			</section>
+			<section>
+				<h2 class="section-title" id="stuff">Stuff</h2>
+				<Grid variant="small">
+					{
+						["Googling", "Reading Docs", "Learning"].map((tech) =>
+						(
+							<li class="mention-card-small accent-contrast">
+								<p>{tech}</p>
+							</li>
+						))
 					}
 				</Grid>
 			</section>
@@ -163,6 +213,10 @@ import Grid from '../components/Grid.astro';
 		background: var(--gradient-subtle);
 		box-shadow: var(--shadow-sm);
 		flex-basis: 10rem !important;
+	}
+
+	.accent-contrast {
+		background: var(--gradient-accent-contrast);
 	}
 
 	@media (min-width: 50em) {

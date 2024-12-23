@@ -31,13 +31,13 @@ const projects = (await getCollection('projects'))
 			<header class="hero">
 				<Hero
 					title="Hi, I'm Samuel Suni (aka Hamunii)"
-					tagline="I am a Developer from Finland."
+					tagline="I'm a software developer from Finland."
 					align="start"
 				>
 					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" />Developer</Pill>
+						<Pill><Icon icon="code" size="1.33em" />C#</Pill>
 						<Pill><Icon icon="code" size="1.33em" />.NET</Pill>
-						<Pill><Icon icon="code" size="1.33em" />Game Modder</Pill>
+						<Pill><Icon icon="code" size="1.33em" />Modder</Pill>
 					</div>
 				</Hero>
 			</header>
@@ -49,7 +49,7 @@ const projects = (await getCollection('projects'))
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Stuff I've Done</h3>
-					<p>These are some of the most significant projects I've started.</p>
+					<p>Here's some cool projects I've started.</p>
 				</header>
 
 				<div class="gallery">
@@ -77,21 +77,20 @@ const projects = (await getCollection('projects'))
 					<h3>Technologies</h3>
 					<p>
 						These are the technologies I know the best.<br/>
-						I also know a lot more other stuff.
+						I also know <a href="/about/#languages"> a lot more other stuff.</a>
 					</p>
 				</header>
-					<div class="gallery">
-						<Grid variant="small">
-							{
-								['C#', '.NET', 'Linux'].map((tech) => (
-									<li class="mention-card">
-										<p>{tech}</p>
-									</li>
-								))
-							}
-						</Grid>
-					</div>
-				</header>
+				<div class="gallery">
+					<Grid variant="small">
+						{
+							['C#', '.NET', 'Linux'].map((tech) => (
+								<li class="mention-card">
+									<p>{tech}</p>
+								</li>
+							))
+						}
+					</Grid>
+				</div>
 			</section>
 
 			<section class="section">

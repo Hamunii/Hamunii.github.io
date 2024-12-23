@@ -90,6 +90,10 @@ const { Content } = await entry.render();
 		margin-inline: auto;
 	}
 
+	.content > * {
+		font-size: var(--text-md);
+	}
+
 	.content > :global(* + *) {
 		margin-top: 1rem;
 	}
