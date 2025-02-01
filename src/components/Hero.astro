@@ -12,8 +12,9 @@ const { align = 'center', tagline, title } = Astro.props;
 	<div class="stack gap-2">
 		<h1 class="title">{title}</h1>
 		{tagline && <p class="tagline">{tagline}</p>}
+		{!tagline && <slot/>}
 	</div>
-	<slot />
+	{tagline && <slot/>}
 </div>
 
 <style>

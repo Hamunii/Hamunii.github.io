@@ -21,9 +21,12 @@ const projects = (await getCollection('projects')).sort(
 		<main class="wrapper stack gap-8">
 			<Hero
 				title="Projects"
-				tagline="Cool projects I've done."
 				align="start"
-			/>
+			>
+			<p>
+			Cool projects I've done. For everything, check out my <a href="https://github.com/Hamunii">GitHub</a>.
+			</p>
+			</Hero>
 			<Grid variant="offset">
 				{
 					projects.map((project: any) => (
