@@ -1,0 +1,102 @@
+---
+title: MonoDetour — A .NET Detouring Library
+publishDate: 2025-04-6 00:00:00
+img: https://monodetour.github.io/logo.webp
+img_alt: MonoDetour logo
+description: |
+  Easy and convenient .NET detouring library based around HookGen with C# source generators, powered by MonoMod.RuntimeDetour.
+tags:
+  - Docs
+  - Modding
+  - .NET
+  - MonoMod
+---
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+
+## Context
+
+In the Unity Mono or just .NET modding sphere, we pretty much have two libraries for modifying methods at runtime. These are [MonoMod](https://github.com/MonoMod/MonoMod) and [HarmonyX](https://github.com/BepInEx/HarmonyX).
+
+With these, we can modify an existing method to almost whatever we want. MonoMod has `Hook` for wrapping the target method in your method, and `ILHook` for modifying the individual CIL instructions the methods consist of. HarmonyX is essentially an `ILHook` wrapper.
+
+## MonoDetour
+
+This project started with a simple goal: make hooking as easy and convenient as possible.
+
+While simple, this is definitely an incredibly ambitious goal considering there are a lot of people out there using HarmonyX who can help people with that, including all the resources online. And I can count all MonoDetour users with a single hand. But hey, I'm not the only user!
+
+Anyways, HarmonyX is already very convenient which is partly why it's so popular. But it could be more convenient with HookGen, where methods are generated to apply hooks to specific methods easily. There's almost no way to mess that up and it's honestly such a joy to experience.
+
+Sometime ago I was introduced to MonoMod's HookGen V2 by current MonoMod maintainer who wrote it, and I decided to borrow it for MonoDetour to create an experience that is more similar to HarmonyX than MonoMod. With this HookGen, the experience is truly magical. Just take a look at https://monodetour.github.io/getting-started/why-monodetour/#comparing-solutions!
+
+So yeah, hook helpers are generated that make hooking super easy and convenient. If MonoDetour only did this, it wouldn't be anything special, really.
+
+## Making Things Easy
+
+There are many things that still wouldn't be easy. Some of these include:
+
+- Writing `ILHook`s to modify methods on the CIL level
+  - Debugging `ILHook`s that produce invalid CIL
+- Hooking `IEnumerator` methods
+- Target method gets inlined, making hooking impossible
+
+### ILHooking
+
+For MonoDetour, I have also written my own CIL manipulation API. This is because every other API I've used has some rough edges or have missing functionality. MonoDetour's `ILWeaver` API is built based on all my previous experience with these.
+
+#### Good Errors ♥
+
+Because I care a lot about this, I have implemented a feature anyone who has ever written an `ILHook` has wanted: CIL analysis in stack traces on invalid CIL!
+
+When creating dynamic methods and compiling them, .NET runtimes provide really bad feedback on what went wrong. The Mono runtime is okay at this, but the .NET runtime doesn't even try.
+
+So I somewhat reverse engineered the rules with trial and error, after which I took a look at [ECMA-335 Common Language Infrastructure (CLI)](https://ecma-international.org/publications-and-standards/standards/ecma-335/) and I've either not have implemented the exception hander rules described there yet, or I have but haven't updated this text. You can check state of this from this issue: https://github.com/MonoDetour/MonoDetour/issues/2
+
+It took over a week of semi-active work on the feature to get it to a state where it's really close to how the .NET runtime validates methods, with it only taking the stack size into account, and mostly ignoring exception handlers too.
+
+Despite MonoDetour being a library, it does apply an ILHook on MonoMod's ILHook applying logic to insert an exception hander where it rethrows the exception with the CIL analysis included. This means that everyone benefits from this even if they aren't using MonoDetour. This isn't even theory, as MonoDetour is used in a few modding communities, like [Lethal Company](https://thunderstore.io/c/lethal-company/) and [PEAK](https://thunderstore.io/c/peak/).
+
+All the CIL analysis code can be viewed here: https://github.com/MonoDetour/MonoDetour/tree/main/src/MonoDetour/Cil/Analysis
+
+#### Writing Good ILHooks is Easier
+
+MonoDetour exposes the CIL analysis feature as a public API, so all of its power can be used for writing more robust ILHooks. This is especially useful for wrapping instructions in exception handler blocks due to some restrictions with stack size with those.
+
+ILWeaver's CIL instruction matching is also very "magical", in that it allows matching against the "initial" version of the instructions list of the method. This means that other ILHooks adding new instructions in between a match should not cause an incompatibility with the ILHooks.
+
+I've basically just focused on a lot of these little things to just make them as good as possible.
+
+### IEnumerator Hooking
+
+[IEnumerator Hooking](https://monodetour.github.io/hooking/ienumerators/) can be a real pain due to the many things you need to know. With HookGen though, MonoDetour is able to provide an experience where compiler generated "unspeakable" (members with a name not referenceable in C#) types' fields can be referenced through a wrapper class!
+
+To make this possible, MonoDetour has to recognize which methods return a compiler generated enumerator type and generate special hooks for the enumerator type.
+
+And since the enumerator type is unspeakable in C#, MonoDetour has to generate dynamic methods at runtime to get a fast field reference getter method to minimize the performance costs later down the line.
+
+For more, see: https://monodetour.github.io/hooking/ienumerators/
+
+## Documentation
+
+I want MonoDetour to be used by people so I need to write good documentation. And optimally, it'd be better documentation than for the other libraries.
+
+Additionally, I really want to write the best ILHooking documentation there is, and honestly I'm really looking forward to that when I get the time.
+
+This is the current state of the documentation. It may or may not be accurate to the current state of things depending on how close MonoDetour is to its 1.0 release.
+
+<CallToAction href="https://monodetour.github.io/">
+  MonoDetour Documentation
+  <Icon icon="arrow-right" size="1.2em" />
+</CallToAction>
+
+## Current Status
+
+This is a massive project I've been thinking about before 2025. I took quite a while to finally get to it due to a lack of time and hesitance due to the sheer size of it.
+
+As of writing, I've been working on this actively for about 3 months now, and I'm planning on working on it until there's nothing to do, which I don't think that time comes anytime soon. I really hope this library eventually becomes the third big detouring library everyone uses, even if just in a few modding communities.
+
+<CallToAction href="https://github.com/MonoDetour/MonoDetour">
+  More about MonoDetour on GitHub
+  <Icon icon="arrow-right" size="1.2em" />
+</CallToAction>
